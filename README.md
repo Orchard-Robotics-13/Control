@@ -1,2 +1,5 @@
 # Control
-the repo is commiting and working and control for the autonomous rover.
+
+This is the Control repository for the Orchard Robotics project.
+
+The main branch for this repository is `main`.
