@@ -11,7 +11,6 @@ Clearpath Husky A300 (dual camera + Ouster 3D lidar) into it via
 orchard_world/
 ├── CMakeLists.txt
 ├── package.xml
-├── dependencies.repos
 ├── launch/
 │   ├── orchard_world.launch.py    # trees-only, no robot
 │   └── orchard_husky.launch.py    # trees + Husky A300 spawn
@@ -43,8 +42,6 @@ orchard_world/
 This package depends on `clearpath_gz` (from Clearpath's `clearpath_simulator`)
 for the Husky A300 spawn/control machinery. It needs to be built in the
 **same workspace**, and **before** this package, so build both together.
-`dependencies.repos` pins the exact `clearpath_simulator` commit this
-package was built and tested against.
 
 ```bash
 mkdir -p ~/orchard_ws/src
@@ -53,9 +50,8 @@ cd ~/orchard_ws/src
 # this package
 git clone -b world https://github.com/Orchard-Robotics-13/Control.git orchard_world
 
-# pinned clearpath_simulator (provides clearpath_gz)
-sudo apt install python3-vcstool
-vcs import . < orchard_world/dependencies.repos
+# clearpath_simulator (provides clearpath_gz)
+git clone https://github.com/clearpathrobotics/clearpath_simulator.git
 
 cd ~/orchard_ws
 rosdep install -r --from-paths src -i -y
