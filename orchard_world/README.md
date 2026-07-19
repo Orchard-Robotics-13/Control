@@ -30,6 +30,13 @@ orchard_world/
 - Ubuntu 24.04
 - [ROS 2 Jazzy](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debians.html)
 - Gazebo Harmonic (`sudo apt-get install ros-jazzy-ros-gz`)
+- Git LFS (the citrus tree mesh is 124MB, tracked via LFS):
+  ```bash
+  sudo apt install git-lfs
+  git lfs install
+  ```
+  Without this, cloning gets you a small pointer file instead of the actual
+  mesh, and the tree model will fail to load.
 
 ## Setup from a fresh clone
 
@@ -43,7 +50,7 @@ package was built and tested against.
 mkdir -p ~/orchard_ws/src
 cd ~/orchard_ws/src
 
-# this package (lives on the 'world' branch of the team repo)
+# this package
 git clone -b world https://github.com/Orchard-Robotics-13/Control.git orchard_world
 
 # pinned clearpath_simulator (provides clearpath_gz)
