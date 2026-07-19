@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="orchard">
+
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system"
+            name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster"/>
+
+    <!-- Sun -->
+    <scene>
+  <ambient>0.4 0.4 0.4 1</ambient>
+  <background>0.53 0.81 0.92 1</background>
+  <shadows>true</shadows>
+</scene>
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <!-- Ground plane -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>100 100</size></plane></geometry>
+          <material>
+            <ambient>0.4 0.3 0.2 1</ambient>
+            <diffuse>0.4 0.3 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+<!-- Tree placeholders: 2 rows x 10 columns -->
+<!-- Row spacing: 4m (Y axis), Tree spacing: 3m (X axis) -->
+<!-- Box is 0.5x0.5x1.5m, z=0.75 so it sits on the ground -->
+
+<!-- Row 0 -->
+<include><uri>model://citrus_tree</uri><name>tree_0_0</name><pose>0  0 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_0_1</name><pose>3  0 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_0_2</name><pose>6  0 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_0_3</name><pose>9  0 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_0_4</name><pose>12 0 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_0_5</name><pose>15 0 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_0_6</name><pose>18 0 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_0_7</name><pose>21 0 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_0_8</name><pose>24 0 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_0_9</name><pose>27 0 0 0 0 0</pose></include>
+
+<!-- Row 1 -->
+<include><uri>model://citrus_tree</uri><name>tree_1_0</name><pose>0  4 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_1_1</name><pose>3  4 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_1_2</name><pose>6  4 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_1_3</name><pose>9  4 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_1_4</name><pose>12 4 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_1_5</name><pose>15 4 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_1_6</name><pose>18 4 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_1_7</name><pose>21 4 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_1_8</name><pose>24 4 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_1_9</name><pose>27 4 0 0 0 0</pose></include>
+
+<!-- Row 2 -->
+<include><uri>model://citrus_tree</uri><name>tree_2_0</name><pose>0 8 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_2_1</name><pose>3 8 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_2_2</name><pose>6 8 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_2_3</name><pose>9 8 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_2_4</name><pose>12 8 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_2_5</name><pose>15 8 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_2_6</name><pose>18 8 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_2_7</name><pose>21 8 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_2_8</name><pose>24 8 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_2_9</name><pose>27 8 0 0 0 0</pose></include>
+
+<!-- Row 3 -->
+<include><uri>model://citrus_tree</uri><name>tree_3_0</name><pose>0 12 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_3_1</name><pose>3 12 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_3_2</name><pose>6 12 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_3_3</name><pose>9 12 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_3_4</name><pose>12 12 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_3_5</name><pose>15 12 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_3_6</name><pose>18 12 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_3_7</name><pose>21 12 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_3_8</name><pose>24 12 0 0 0 0</pose></include>
+<include><uri>model://citrus_tree</uri><name>tree_3_9</name><pose>27 12 0 0 0 0</pose></include>
+  </world>
+</sdf>

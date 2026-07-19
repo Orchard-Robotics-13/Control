@@ -1,0 +1,14 @@
+# ROS2 / colcon build artifacts (only relevant if you commit from workspace root
+# rather than from inside src/orchard_world -- harmless either way)
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor/OS cruft
+.vscode/
+*.swp
+.DS_Store
