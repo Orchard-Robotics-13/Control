@@ -53,6 +53,9 @@ git clone -b world https://github.com/Orchard-Robotics-13/Control.git orchard_wo
 # clearpath_simulator (provides clearpath_gz)
 git clone https://github.com/clearpathrobotics/clearpath_simulator.git
 
+# clearpath_config
+git clone https://github.com/clearpathrobotics/clearpath_config.git
+
 cd ~/orchard_ws
 rosdep install -r --from-paths src -i -y
 colcon build --symlink-install
