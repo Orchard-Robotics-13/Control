@@ -4,34 +4,334 @@
     <static>true</static>
     <link name="link">
 
-      <!-- Visual: full DAE mesh -->
-      <visual name="visual">
-        <geometry>
-          <mesh>
-            <uri>model://citrus_tree/meshes/citrus_tree.dae</uri>
-          </mesh>
-        </geometry>
-      </visual>
-
-      <!-- Collision: simple primitives -->
-      <collision name="trunk_col">
-        <pose>0 0 0.6 0 0 0</pose>
+      <!-- Trunk -->
+      <visual name="trunk_visual">
+        <pose>0 0 0.15 0 0 0</pose>
         <geometry>
           <cylinder>
-            <radius>0.12</radius>
-            <length>1.2</length>https://github.com/TwistedFlog/Blender-5-DAE-Exporter-Importer.git
+            <radius>0.08</radius>
+            <length>0.3</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.18 0.13 0.08 1</ambient>
+          <diffuse>0.28 0.20 0.13 1</diffuse>
+          <specular>0.02 0.02 0.02 1</specular>
+        </material>
+      </visual>
+
+      <collision name="trunk_col">
+        <pose>0 0 0.15 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.08</radius>
+            <length>0.3</length>
           </cylinder>
         </geometry>
       </collision>
 
-      <collision name="canopy_col">
-        <pose>0 0 2.2 0 0 0</pose>
+      <!-- Canopy -->
+      <visual name="canopy_visual">
+        <pose>0 0 0.9 0 0 0</pose>
         <geometry>
           <sphere>
-            <radius>1.4</radius>
+            <radius>0.6</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0.09 0.28 0.09 1</ambient>
+          <diffuse>0.16 0.38 0.12 1</diffuse>
+          <specular>0.05 0.05 0.05 1</specular>
+        </material>
+      </visual>
+
+      <collision name="canopy_col">
+        <pose>0 0 0.9 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.6</radius>
           </sphere>
         </geometry>
       </collision>
+
+      <!-- ArUco marker plaques: 15 total across 3 latitude rings on the
+           canopy sphere (4 upper / 5 equatorial / 6 lower), each tangent
+           to the sphere and facing outward radially. Each ring's azimuth
+           start is offset 37 deg from the previous ring (upper=0,
+           equator=37, lower=74) so markers don't stack vertically-->
+           
+      <!-- Upper ring: 4 markers at 40 deg elevation, azimuth offset 0 deg -->
+      <visual name="aruco_marker_01">
+        <pose>0.4615 0.0 1.2873 0 0.8727 0.0</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_01.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_02">
+        <pose>0.0 0.4615 1.2873 0 0.8727 1.5708</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_02.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_03">
+        <pose>-0.4615 0.0 1.2873 0 0.8727 3.1416</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_03.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_04">
+        <pose>-0.0 -0.4615 1.2873 0 0.8727 4.7124</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_04.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <!-- Equator ring: 5 markers at 0 deg elevation, azimuth offset 37 deg -->
+      <visual name="aruco_marker_05">
+        <pose>0.4812 0.3626 0.9 0 1.5708 0.6458</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_05.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_06">
+        <pose>-0.1962 0.5697 0.9 0 1.5708 1.9024</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_06.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_07">
+        <pose>-0.6024 -0.0105 0.9 0 1.5708 3.159</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_07.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_08">
+        <pose>-0.1762 -0.5762 0.9 0 1.5708 4.4157</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_08.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_09">
+        <pose>0.4935 -0.3456 0.9 0 1.5708 5.6723</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_09.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <!-- Lower ring: 6 markers at -40 deg elevation, azimuth offset 74 deg -->
+      <visual name="aruco_marker_10">
+        <pose>0.1272 0.4437 0.5127 0 2.2689 1.2915</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_10.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_11">
+        <pose>-0.3206 0.332 0.5127 0 2.2689 2.3387</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_11.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_12">
+        <pose>-0.4478 -0.1117 0.5127 0 2.2689 3.3859</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_12.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_13">
+        <pose>-0.1272 -0.4437 0.5127 0 2.2689 4.4331</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_13.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_14">
+        <pose>0.3206 -0.332 0.5127 0 2.2689 5.4803</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_14.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <visual name="aruco_marker_15">
+        <pose>0.4478 0.1117 0.5127 0 2.2689 6.5275</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.15 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>model://citrus_tree/materials/textures/aruco_15.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
 
     </link>
   </model>

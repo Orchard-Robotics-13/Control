@@ -2,7 +2,7 @@
 
 A Gazebo Harmonic orchard simulation for ROS 2 Jazzy: a 4×10 citrus tree
 grid on a flat ground plane, with launch integration for spawning a
-Clearpath Husky A300 (dual camera + Ouster 3D lidar) into it via
+Clearpath Husky A300 (dual 3D LiDAR) into it via
 `clearpath_gz`.
 
 ## What's in this repo
@@ -29,13 +29,6 @@ orchard_world/
 - Ubuntu 24.04
 - [ROS 2 Jazzy](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debians.html)
 - Gazebo Harmonic (`sudo apt-get install ros-jazzy-ros-gz`)
-- Git LFS (the citrus tree mesh is 124MB, tracked via LFS):
-  ```bash
-  sudo apt install git-lfs
-  git lfs install
-  ```
-  Without this, cloning gets you a small pointer file instead of the actual
-  mesh, and the tree model will fail to load.
 
 ## Setup from a fresh clone
 
@@ -105,9 +98,6 @@ repo and builds it.
 
 ## Notes
 
-- `config/robot.yaml`'s Axis PTZ camera and Fixposition INS entries are
-  real-hardware-only (no Gazebo plugin) — they won't produce data in sim.
-  Safe to delete if they ever cause build errors.
 - If citrus trees fail to load with `Unable to find uri[model://citrus_tree]`,
   do a clean rebuild (`rm -rf build/orchard_world install/orchard_world`
   then `colcon build`) — this usually means an old install layout is stale.
