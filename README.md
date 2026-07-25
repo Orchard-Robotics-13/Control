@@ -2,7 +2,7 @@
 
 A Gazebo Harmonic orchard simulation for ROS 2 Jazzy: a 4×10 citrus tree
 grid on a flat ground plane, with launch integration for spawning a
-Clearpath Husky A300 (dual 3D LiDAR) into it via
+Clearpath Husky A300 (Camera with 3D LiDAR disabled) into it via
 `clearpath_gz`.
 
 ## What's in this repo
@@ -21,7 +21,7 @@ orchard_world/
 │       ├── model.sdf
 │       └── model.config
 └── config/
-    └── robot.yaml                  # Husky A300, camera + lidar
+    └── robot.yaml                  # Husky A300, camera + lidar(disabled)
 ```
 
 ## Prerequisites
