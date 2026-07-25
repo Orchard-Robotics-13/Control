@@ -18,6 +18,8 @@ orchard_world/
 │   └── orchard.sdf
 ├── models/
 │   └── citrus_tree/
+│       ├── materials/
+│           └── textures/aruco_marker_0.png
 │       ├── model.sdf
 │       └── model.config
 └── config/
