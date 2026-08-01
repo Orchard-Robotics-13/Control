@@ -12,8 +12,11 @@ orchard_world/
 ├── CMakeLists.txt
 ├── package.xml
 ├── launch/
-│   ├── orchard_world.launch.py    # trees-only, no robot
-│   └── orchard_husky.launch.py    # trees + Husky A300 spawn
+│   ├── orchard_world.launch.py            # trees-only, no robot
+│   ├── orchard_husky.launch.py            # trees + Husky A300 spawn
+│   ├── gz_sim_headless.launch.py          # local copy of clearpath_gz's
+│   │                                       #   gz_sim.launch.py + headless toggle
+│   └── orchard_husky_headless.launch.py   # trees + Husky, headless Gazebo + RViz2
 ├── worlds/
 │   └── orchard.sdf
 ├── models/
@@ -43,7 +46,7 @@ mkdir -p ~/orchard_ws/src
 cd ~/orchard_ws/src
 
 # this package
-git clone -b world https://github.com/Orchard-Robotics-13/Control.git orchard_world
+git clone -b test https://github.com/Orchard-Robotics-13/Control.git orchard_world
 
 # clearpath_simulator (provides clearpath_gz)
 git clone https://github.com/clearpathrobotics/clearpath_simulator.git
@@ -79,27 +82,36 @@ colcon build --symlink-install --packages-select orchard_world
 ros2 launch orchard_world orchard_world.launch.py
 ```
 
-**Trees + Husky A300 (camera + lidar):**
+**Trees + Husky A300 (camera + lidar), Gazebo GUI on:**
 ```bash
 ros2 launch orchard_world orchard_husky.launch.py
 ```
 Optional args: `x`, `y`, `yaw` (spawn pose, default `-2.0 2.0 0.0`), `rviz`
 (default `false`).
 
-## How the world integration works
+**Trees + Husky A300, Gazebo headless (server only) + RViz2:**
+```bash
+ros2 launch orchard_world orchard_husky_headless.launch.py
+```
+Same `x`, `y`, `yaw` args as above. `rviz` defaults to `true` and
+`headless` defaults to `true` here, since that's this file's purpose —
+pass `headless:=false` to bring the Gazebo GUI back, or `rviz:=false` to
+skip RViz2, without switching files.
 
-`clearpath_gz`'s launch file only accepts a fixed set of built-in world names
-(`construction`, `office`, `orchard`, `pipeline`, `solar_farm`, `warehouse`) —
-there's no argument to point it at an arbitrary world file. To use our world
-with their robot-spawn machinery, `orchard_world`'s `CMakeLists.txt`
-automatically symlinks our `orchard.sdf` over their built-in `orchard` world
-slot as part of every `colcon build`. This is driven entirely by
-`ros2 pkg prefix` at build time — nothing is hardcoded to a specific
-machine or username, so it reproduces identically for anyone who clones this
-repo and builds it.
+Use `orchard_husky.launch.py` while you're still iterating on the world
+itself (placing trees, checking marker positions, etc.) — Gazebo's GUI is
+the only view that shows the raw authored scene. Switch to
+`orchard_husky_headless.launch.py` once you're testing robot
+behavior/perception, where RViz2's robot's-eye view (sensor topics, TF,
+costmaps) is what actually matters, and the Gazebo render window is just
+spending GPU cycles you don't need.
 
 ## Notes
 
 - If citrus trees fail to load with `Unable to find uri[model://citrus_tree]`,
   do a clean rebuild (`rm -rf build/orchard_world install/orchard_world`
   then `colcon build`) — this usually means an old install layout is stale.
+- `gz_sim_headless.launch.py` imports `ClearpathConfig` from
+  `clearpath_config.clearpath_config` in its non-headless code path (same
+  as Clearpath's original) — this only matters if you ever run it with
+  `headless:=false`; the headless path skips it entirely.
