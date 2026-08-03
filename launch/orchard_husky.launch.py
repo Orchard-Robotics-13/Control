@@ -52,7 +52,7 @@ def generate_launch_description():
     declare_x = DeclareLaunchArgument('x', default_value='-2.0')
     declare_y = DeclareLaunchArgument('y', default_value='2.0')
     declare_yaw = DeclareLaunchArgument('yaw', default_value='0.0')
-    declare_rviz = DeclareLaunchArgument('rviz', default_value='false')
+    declare_rviz = DeclareLaunchArgument('rviz', default_value='true')
 
     set_gz_resource_path = SetEnvironmentVariable(
         name='GZ_SIM_RESOURCE_PATH',
@@ -76,7 +76,7 @@ def generate_launch_description():
             'rviz': LaunchConfiguration('rviz'),
         }.items()
     )
-
+    
     return LaunchDescription([
         declare_x,
         declare_y,

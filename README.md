@@ -2,7 +2,7 @@
 
 A Gazebo Harmonic orchard simulation for ROS 2 Jazzy: a 4×10 citrus tree
 grid on a flat ground plane, with launch integration for spawning a
-Clearpath Husky A300 (Camera with 3D LiDAR disabled) into it via
+Clearpath Husky A300 (Camera with 3D LiDAR) into it via
 `clearpath_gz`.
 
 ## What's in this repo
@@ -14,7 +14,6 @@ orchard_world/
 ├── launch/
 │   ├── orchard_world.launch.py            # trees-only, no robot
 │   ├── orchard_husky.launch.py            # trees + Husky A300 spawn
-│   └── orchard_husky_headless.launch.py   # trees + Husky, headless Gazebo + RViz2
 ├── worlds/
 │   └── orchard.sdf
 ├── models/
@@ -24,7 +23,7 @@ orchard_world/
 │       ├── model.sdf
 │       └── model.config
 └── config/
-    └── robot.yaml                  # Husky A300, camera + lidar(disabled)
+    └── robot.yaml                  # Husky A300, camera + 3D lidar
 ```
 
 ## Prerequisites
@@ -84,10 +83,6 @@ ros2 launch orchard_world orchard_husky.launch.py
 Optional args: `x`, `y`, `yaw` (spawn pose, default `-2.0 2.0 0.0`), `rviz`
 (default `false`).
 
-**Trees + Husky A300, Gazebo headless (server only) + RViz2:**
-```bash
-ros2 launch orchard_world orchard_husky_headless.launch.py
-```
 Same `x`, `y`, `yaw` args as above. `rviz` defaults to `true` and
 `headless` defaults to `true` here, since that's this file's purpose —
 pass `headless:=false` to bring the Gazebo GUI back, or `rviz:=false` to
