@@ -14,8 +14,6 @@ orchard_world/
 ├── launch/
 │   ├── orchard_world.launch.py            # trees-only, no robot
 │   ├── orchard_husky.launch.py            # trees + Husky A300 spawn
-│   ├── gz_sim_headless.launch.py          # local copy of clearpath_gz's
-│   │                                       #   gz_sim.launch.py + headless toggle
 │   └── orchard_husky_headless.launch.py   # trees + Husky, headless Gazebo + RViz2
 ├── worlds/
 │   └── orchard.sdf
@@ -48,11 +46,8 @@ cd ~/orchard_ws/src
 # this package
 git clone -b test https://github.com/Orchard-Robotics-13/Control.git orchard_world
 
-# clearpath_simulator (provides clearpath_gz)
-git clone https://github.com/clearpathrobotics/clearpath_simulator.git
-
-# clearpath_config
-git clone https://github.com/clearpathrobotics/clearpath_config.git
+# clearpath_simulator_forked (provides forked repo of clearpath_gz)
+git clone https://github.com/arslan-da/clearpath_simulator_forked.git
 
 cd ~/orchard_ws
 rosdep install -r --from-paths src -i -y

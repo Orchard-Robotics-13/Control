@@ -41,7 +41,7 @@ def generate_launch_description():
     pkg_share = get_package_share_directory('orchard_world')
 
     # So Gazebo can resolve model://citrus_tree inside orchard.sdf
-    models_path = os.path.join(pkg_share, 'models')
+    models_path = os.path.dirname(pkg_share)
 
     # Where clearpath_gz looks for robot.yaml
     setup_path = os.path.join(pkg_share, 'config')
