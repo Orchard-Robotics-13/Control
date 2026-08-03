@@ -13,6 +13,12 @@
             name="gz::sim::systems::UserCommands"/>
     <plugin filename="gz-sim-scene-broadcaster-system"
             name="gz::sim::systems::SceneBroadcaster"/>
+    
+       <!-- REQUIRED PLUGIN FOR CAMERA VISUALIZATION AND DATA GENERATION -->
+    <plugin filename="gz-sim-sensors-system"
+            name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
 
     <!-- Sun -->
     <scene>
