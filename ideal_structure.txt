@@ -1,0 +1,62 @@
+orchard_ws/
+└── src/
+    ├── control/
+    │   ├── CMakeLists.txt
+    │   ├── package.xml
+    │   ├── README.md
+    │   │
+    │   ├── include/
+    │   │   └── control/
+    │   │       ├── interfaces/
+    │   │       │   ├── base_controller.hpp
+    │   │       │   ├── mobile_robot.hpp
+    │   │       │   └── robot_state.hpp
+    │   │       │
+    │   │       ├── robots/
+    │   │       │   ├── husky/
+    │   │       │   │   ├── husky_controller.hpp
+    │   │       │   │   └── husky_parameters.hpp
+    │   │       │   │
+    │   │       │   ├── jackal/
+    │   │       │   └── tractor/
+    │   │       │
+    │   │       ├── algorithms/
+    │   │       │   ├── pid.hpp
+    │   │       │   ├── pure_pursuit.hpp
+    │   │       │   ├── stanley.hpp
+    │   │       │   └── mpc.hpp
+    │   │       │
+    │   │       └── utils/
+    │   │           ├── math.hpp
+    │   │           └── conversions.hpp
+    │   │
+    │   ├── src/
+    │   │   ├── interfaces/
+    │   │   │   ├── base_controller.cpp
+    │   │   │   └── mobile_robot.cpp
+    │   │   │
+    │   │   ├── robots/
+    │   │   │   ├── husky/
+    │   │   │   │   ├── husky_controller.cpp
+    │   │   │   │   └── husky_parameters.cpp
+    │   │   │   │
+    │   │   │   ├── jackal/
+    │   │   │   └── tractor/
+    │   │   │
+    │   │   ├── algorithms/
+    │   │   │   ├── pid.cpp
+    │   │   │   ├── pure_pursuit.cpp
+    │   │   │   ├── stanley.cpp
+    │   │   │   └── mpc.cpp
+    │   │   │
+    │   │   ├── utils/
+    │   │   └── main.cpp
+    │   │
+    │   ├── config/
+    │   ├── launch/
+    │   └── test/
+    │
+    ├── clearpath_config/
+    ├── clearpath_simulator/
+    ├── CV/
+    └── simulation_gazebo_world/
