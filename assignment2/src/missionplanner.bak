@@ -1,0 +1,58 @@
+#include "rclcpp/rclcpp.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
+#include <vector>
+#include <chrono>
+
+using namespace std::chrono_literals;
+
+class MissionPlannerNode : public rclcpp::Node {
+private:
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr mission_pub_;
+    rclcpp::TimerBase::SharedPtr timer_;
+
+public:
+    MissionPlannerNode() : Node("mission_planner_node") {
+        mission_pub_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/mission/target", 10);
+        
+        // Timer fires once after 2 seconds to ensure network is up
+        timer_ = this->create_wall_timer(2000ms, std::bind(&MissionPlannerNode::publishMission, this));
+    }
+
+private:
+    void publishMission() {
+        timer_->cancel();
+
+        // Define a curved path
+        std::vector<geometry_msgs::msg::Point> curve_waypoints;
+        geometry_msgs::msg::Point p1, p2, p3;
+        
+        p1.x = 20.0; p1.y = 10.0;
+        p2.x = 30.0; p2.y = 20.0;
+        p3.x = 40.0; p3.y = 10.0;
+
+        curve_waypoints.push_back(p1);
+        curve_waypoints.push_back(p2);
+        curve_waypoints.push_back(p3);
+
+        for (const auto& pt : curve_waypoints) {
+            auto msg = geometry_msgs::msg::PoseStamped();
+            msg.header.stamp = this->get_clock()->now();
+            
+            // Explicitly address the Audi (Requirement b)
+            msg.header.frame_id = "audi"; 
+            msg.pose.position = pt;
+
+            mission_pub_->publish(msg);
+            std::this_thread::sleep_for(100ms); // Brief delay between publishes
+        }
+
+        RCLCPP_INFO(this->get_logger(), "Curved mission dispatched to Audi.");
+    }
+};
+
+int main(int argc, char * argv[]) {
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared<MissionPlannerNode>());
+    rclcpp::shutdown();
+    return 0;
+}
