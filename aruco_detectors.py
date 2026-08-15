@@ -17,7 +17,7 @@ class ArucoDetectorNode(Node):
         self.aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_4X4_50)
         self.aruco_params = cv2.aruco.DetectorParameters_create()
         
-        self.camera_topic = 'cpr_a200_0000/sensors/camera_0/color/image'
+        self.camera_topic = '/a300_00000/sensors/camera_0/color/image'
         self.image_sub = self.create_subscription(
             Image,
             self.camera_topic,
